@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
 
+const options = { timestamps: false };
+
 const infoTable = {
     id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER(1),
         primaryKey: true,
         autoIncrement: true
     },
@@ -18,7 +20,7 @@ const scheme = sequelize => {
         name: Sequelize.STRING,
         surname: Sequelize.STRING,
         password: Sequelize.STRING
-    });
+    }, options);
     const Issue = sequelize.define('Issue', {
         id: {
             type: Sequelize.INTEGER,
@@ -28,26 +30,26 @@ const scheme = sequelize => {
         date: Sequelize.DATE,
         title: Sequelize.STRING,
         description: Sequelize.STRING
-    });
+    }, options);
     const IssueHistory = sequelize.define('IssueHistory', {
         date: Sequelize.DATE,
         comment: {
             type: Sequelize.STRING,
             defaultValue: 'A new issue was created'
         }
-    });
-    const Status = sequelize.define('Status', infoTable);
-    const Urgency = sequelize.define('Urgency', infoTable);
-    const Criticality = sequelize.define('Criticality', infoTable);
+    }, options);
+    const Status = sequelize.define('Status', infoTable, options);
+    const Urgency = sequelize.define('Urgency', infoTable, options);
+    const Criticality = sequelize.define('Criticality', infoTable, options);
 
-    Issue.belongsTo(User);
-    Issue.belongsTo(Status);
-    Issue.belongsTo(Urgency);
-    Issue.belongsTo(Criticality);
+    Issue.belongsTo(User, { foreignKey: 'user_login' });
+    Issue.belongsTo(Status, { foreignKey: 'status_id' });
+    Issue.belongsTo(Urgency, { foreignKey: 'urgency_id' });
+    Issue.belongsTo(Criticality, { foreignKey: 'criticality_id' });
 
-    IssueHistory.belongsTo(Issue);
-    IssueHistory.belongsTo(Status);
-    IssueHistory.belongsTo(User);
+    IssueHistory.belongsTo(Issue, { foreignKey: 'issue_id' });
+    IssueHistory.belongsTo(Status, { foreignKey: 'status_id' });
+    IssueHistory.belongsTo(User, { foreignKey: 'user_login' });
 };
 
 module.exports = scheme;
