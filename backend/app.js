@@ -3,13 +3,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const issueRouter = require('./routes/issue');
 const userRouter = require('./routes/user');
+const authorize = require('./services/authorize');
 
 const app = express();
 const port = 8000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.post('/login', authorize);
 app.use('/issue', issueRouter);
 app.use('/user', userRouter);
 
