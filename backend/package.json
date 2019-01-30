@@ -1,0 +1,20 @@
+{
+  "name": "issue-tracker",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "reset-db": "rm -f ./db.sqlite3 && node dev-db.js"
+  },
+  "author": "sandragg",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "express": "4.16.4",
+    "sequelize": "^4.42.0",
+    "sqlite3": "^4.0.6"
+  }
+}
