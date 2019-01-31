@@ -1,0 +1,62 @@
+.authorize-section,
+.authorize-section__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.authorize-section {
+    align-items: center;
+
+    box-sizing: border-box;
+    width: 300px;
+
+    margin: 10vh auto;
+    padding: 20px;
+
+    background: khaki;
+    border-radius: 10px;
+    font-size: 28pt;
+}
+
+.authorize-section__title {
+    margin: 15px 0;
+
+    font-size: 1em;
+}
+
+.authorize-section__field {
+    width: 100%;
+
+    margin: 5px 0;
+}
+
+.authorize-section__submit {
+    margin-top: 15px;
+    padding: 5px 10px;
+
+    font-family: inherit;
+    font-size: 0.5em;
+    border-radius: 5px;
+    border: 1px solid burlywood;
+    outline: none;
+}
+
+.authorize-section__submit:active {
+    border-color: darkgoldenrod;
+}
+
+.field__label {
+    margin: 5px 0;
+
+    font-size: 0.5em;
+}
+
+.field__input {
+    height: 30px;
+
+    padding: 0 5px;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
