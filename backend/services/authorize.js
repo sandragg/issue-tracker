@@ -10,7 +10,11 @@ module.exports = (req, res) => {
     User.findByPk(login)
         .then(user => {
             if (user && user.password === password) {
-                return res.send({ id: user.id, name: user.name });
+                return res.send({
+                    login: user.login,
+                    name: user.name,
+                    surname: user.surname
+                });
             }
             res.status(403).send('Wrong login or password');
         })
