@@ -1,0 +1,46 @@
+.list-section__table {
+    width: 100%;
+
+    margin: 20px 0;
+    padding: 10px;
+
+    border-spacing: 0 5px;
+    text-align: left;
+    font-size: 16pt;
+}
+
+.list-section__table .table__header {
+    background: antiquewhite;
+}
+
+.list-section__table .table__header th {
+    padding: 10px;
+}
+
+.list-section__table .table__content td {
+    padding: 5px 10px;
+
+    border-bottom: 1px solid antiquewhite;
+}
+
+.list-section__table .table__content td:last-child {
+    border-right: none;
+}
+
+.list-section__table .table__content tr:hover {
+    color: coral;
+}
+
+.list-section__table .table__link {
+    display: flex;
+
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.notice {
+    align-self: center;
+
+    font-size: 18pt;
+}
