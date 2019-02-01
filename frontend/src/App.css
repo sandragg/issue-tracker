@@ -1,0 +1,10 @@
+.page-content {
+    box-sizing: border-box;
+    min-height: calc(100vh - 45px);
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 45px;
+    padding: 30px;
+}

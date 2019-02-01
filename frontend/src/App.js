@@ -15,7 +15,7 @@ export const App = () => (
     <BrowserRouter>
         <div className="page">
             <Header />
-            <main>
+            <main className="page-content">
                 <Switch>
                     <Redirect exact from="/" to={ROUTES.HOME} />
                     <Route exact path={ROUTES.AUTHORIZE} component={Pages.AuthorizePage} />
