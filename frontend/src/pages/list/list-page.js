@@ -6,25 +6,41 @@ import React, {
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../services/routes";
 import { listsOptions } from "../../services/list-options";
+import { Field } from 'api/models';
 import './list-page.css';
 
-export const ListPage = ({ match }) => {
-    const listOpts = useRef(null);
+export const ListPage = (props) => {
+    const { match: { params }} = props;
     const [ list, setList ] = useState(null);
+    const listOpts = useRef(null);
+    const listFields = useRef(null);
 
     useEffect(() => {
-        listOpts.current = listsOptions[match.params.type];
-        listOpts.current.model.getAll().then(setList);
-    }, [match.params.type]);
+        listOpts.current = listsOptions[params.type];
+
+        Promise.all([
+            listOpts.current.model.getAll(),
+            Field.getById(params.type)
+        ])
+            .then(([ items, fields ]) => {
+                listFields.current = fields.filter(filterVisibleFields);
+                setList(items);
+            });
+    }, [params.type]);
 
     return list && list.length ? (
         <section className="section list-section">
             <table className="list-section__table">
                 <thead className="table__header">
-                    {buildTableHeader(listOpts.current.fields)}
+                    {buildTableHeader(listFields.current)}
                 </thead>
                 <tbody className="table__content">
-                    {buildTableBody(list, listOpts.current)}
+                    {buildTableBody(
+                        list,
+                        params.type,
+                        listFields.current,
+                        listOpts.current
+                    )}
                 </tbody>
             </table>
         </section>
@@ -32,6 +48,10 @@ export const ListPage = ({ match }) => {
         <span className="notice">List is empty</span>
     );
 };
+
+function filterVisibleFields(field) {
+    return !field.hidden;
+}
 
 function buildTableHeader(fields) {
     return (
@@ -45,8 +65,9 @@ function buildTableHeader(fields) {
     )
 }
 
-function buildTableBody(list, listOptions) {
-    const { idField, fields } = listOptions;
+function buildTableBody(list, listType, fields, opts) {
+    const { idField } = opts;
+    const EDIT_PATH = ROUTES.EDIT.replace(':type', listType);
 
     return list.map(item => {
         const idValue = item[idField];
@@ -63,7 +84,7 @@ function buildTableBody(list, listOptions) {
                                 fieldKey === idField ? (
                                     <Link
                                         className="table__link"
-                                        to={ROUTES.EDIT.replace(':id', idValue)}
+                                        to={EDIT_PATH.replace(':id', idValue)}
                                     >
                                         {fieldValue}
                                     </Link>
