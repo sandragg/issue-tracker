@@ -3,9 +3,9 @@ import React, {
     useState,
     useEffect
 } from 'react';
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../services/routes";
-import { listsOptions } from "../../services/list-options";
+import { Link } from 'react-router-dom';
+import { ROUTES } from 'services/routes';
+import { listsOptions } from 'services/list-options';
 import { Field } from 'api/models';
 import './list-page.css';
 

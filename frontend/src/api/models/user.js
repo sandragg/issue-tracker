@@ -1,9 +1,9 @@
-import { fetch } from "whatwg-fetch";
+import { fetch } from 'whatwg-fetch';
 import {
     apiConfig,
     getApiPath
-} from "../config";
-import { BaseModel } from "./base";
+} from 'api/config';
+import { BaseModel } from './base';
 
 class UserModel extends BaseModel {
     API_PATH = getApiPath(apiConfig, 'user');

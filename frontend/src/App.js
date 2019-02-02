@@ -5,10 +5,10 @@ import {
     Redirect,
     Switch
 } from 'react-router-dom';
-import * as Pages from './pages';
-import { Header } from "./components/header";
-import { Session } from "./services/session";
-import { ROUTES } from "./services/routes";
+import * as Pages from 'pages';
+import { Header } from 'components/header';
+import { Session } from 'services/session';
+import { ROUTES } from 'services/routes';
 import './App.css';
 
 export const App = () => (

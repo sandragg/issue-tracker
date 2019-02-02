@@ -3,9 +3,9 @@ import React, {
     useState,
     useCallback
 } from 'react';
-import { Redirect } from "react-router-dom";
-import { User } from '../../api/models/user';
-import { Session } from "../../services/session";
+import { Redirect } from 'react-router-dom';
+import { User } from 'api/models';
+import { Session } from 'services/session';
 import './authorize-page.css';
 
 export const AuthorizePage = () => {

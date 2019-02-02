@@ -1,8 +1,8 @@
 import {
     apiConfig,
     getApiPath
-} from "../config";
-import { BaseModel } from "./base";
+} from 'api/config';
+import { BaseModel } from './base';
 
 class IssueModel extends BaseModel {
     API_PATH = getApiPath(apiConfig, 'issue');

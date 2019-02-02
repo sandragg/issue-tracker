@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Session } from "../../services/session";
-import { ROUTES } from '../../services/routes';
+import { Session } from 'services/session';
+import { ROUTES } from 'services/routes';
 import './header.css';
 
 export const Header = () => (

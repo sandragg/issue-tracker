@@ -1,4 +1,4 @@
-import { fetch } from "whatwg-fetch";
+import { fetch } from 'whatwg-fetch';
 
 export class BaseModel {
     API_PATH = null;

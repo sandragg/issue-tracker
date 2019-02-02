@@ -1,4 +1,4 @@
-import { User, Issue } from "../api/models";
+import { User, Issue } from 'api/models';
 
 export const listsOptions = {
     user: {
