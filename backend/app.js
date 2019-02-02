@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const issueRouter = require('./routes/issue');
-const userRouter = require('./routes/user');
+const {
+    issueRouter,
+    userRouter,
+    fieldRouter
+} = require('./routes');
 const authorize = require('./services/authorize');
 
 const app = express();
@@ -14,5 +17,6 @@ app.use(cors());
 app.post('/login', authorize);
 app.use('/issue', issueRouter);
 app.use('/user', userRouter);
+app.use('/field', fieldRouter);
 
 app.listen(port, () => console.log(`Express app listening on localhost:${port}`));
