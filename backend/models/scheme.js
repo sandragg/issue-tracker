@@ -50,6 +50,16 @@ const scheme = sequelize => {
     IssueHistory.belongsTo(Issue, { foreignKey: 'issue_id' });
     IssueHistory.belongsTo(Status, { foreignKey: 'status_id' });
     IssueHistory.belongsTo(User, { foreignKey: 'user_login' });
+
+    const Field = sequelize.define('Field', {
+        model: Sequelize.STRING,
+        key: Sequelize.STRING,
+        name: Sequelize.STRING,
+        type: Sequelize.STRING,
+        autocomplete: Sequelize.INTEGER(1),
+        mutable: Sequelize.INTEGER(1),
+        hidden: Sequelize.INTEGER(1)
+    }, options)
 };
 
 module.exports = scheme;
