@@ -4,7 +4,8 @@ export const apiConfig = {
     pathNames: {
         authorization: '/login',
         user: '/user',
-        issue: '/issue'
+        issue: '/issue',
+        field: '/field'
     }
 };
 
