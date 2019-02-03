@@ -1,0 +1,25 @@
+.button {
+	height: 50px;
+	min-width: 100px;
+
+	padding: 10px;
+
+	font-family: inherit;
+	font-size: 0.6em;
+	border-radius: 5px;
+	border: 1px solid burlywood;
+	outline: none;
+	cursor: pointer;
+}
+
+.button_submit {
+	background: khaki;
+}
+
+.button_cancel {
+	background: coral;
+}
+
+.button:active {
+	border-color: darkgoldenrod;
+}
