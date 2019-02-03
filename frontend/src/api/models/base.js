@@ -10,7 +10,7 @@ export class BaseModel {
 
     getById(id) {
         return fetch(`${this.API_PATH}/${id}`)
-            .then(res => res.json())
+            .then(res => res.ok ? res.json() : res.text())
     }
 
     create(data) {
@@ -27,7 +27,7 @@ export class BaseModel {
             .then(res => res.ok ? res.json() : res.text())
     }
 
-    update(id, data) {
+    update(data, id) {
         return fetch(
             `${this.API_PATH}/${id}`,
             {
