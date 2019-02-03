@@ -1,0 +1,35 @@
+.field {
+	box-sizing: border-box;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	margin: 10px 0;
+	padding: 5px;
+}
+
+.field__label {
+	margin: 5px 0;
+	padding: 0 5px;
+
+	font-size: 0.6em;
+	font-weight: 600;
+}
+
+.field__input {
+	height: 30px;
+
+	padding: 0 5px;
+
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid antiquewhite;
+	box-shadow: 0 0 0 30px white inset;
+	outline: none;
+	font-size: 0.5em;
+}
+
+.field__input:focus {
+	border-color: coral;
+}
