@@ -45,13 +45,14 @@
     border-color: darkgoldenrod;
 }
 
-.field__label {
+.authorize-section__field .field__label {
     margin: 5px 0;
 
-    font-size: 0.5em;
+    font-size: 0.6em;
+    font-weight: normal;
 }
 
-.field__input {
+.authorize-section__field .field__input {
     height: 30px;
 
     padding: 0 5px;
@@ -59,4 +60,5 @@
     border-radius: 5px;
     border: none;
     outline: none;
+    font-size: 0.4em;
 }
