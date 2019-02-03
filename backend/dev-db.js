@@ -58,6 +58,15 @@ function createFields() {
             hidden: false
         },
         {
+            model: 'user',
+            key: 'password',
+            name: 'Password',
+            type: 'text',
+            autocomplete: false,
+            mutable: false,
+            hidden: true
+        },
+        {
             model: 'issue',
             key: 'id',
             name: 'Id',
