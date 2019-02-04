@@ -3,8 +3,8 @@ issue-tracker
 A system for tracking issues in a project provides you to record and store bugs/proposals detected during the testing process.
 The interface consists of 3 windows:
 - **Authorization**, where user enters credentials to log in the system. After successful authorization you will be redirected on an issue list page.
-- **List** of all issues/users recorded in the system. To open/edit certain list item just click on an id field in the table.
-- **Editor** to create the new item or edit existed. In addition, opening of the existed issue shows its history changes in the table.
+- **List** of all issues/users recorded in the system (main fields). To open/edit certain list item just click on an id field in the table.
+- **Editor** to create the new item or edit existed. In addition, opening of the existed issue shows its history changes in the table. In issue only status can be changed!
 
 ## Dependencies
 `node` and `npm`
