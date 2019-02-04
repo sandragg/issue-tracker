@@ -1,0 +1,27 @@
+.form-section {
+    width: 500px;
+
+    margin: 0 auto;
+
+    font-size: 28pt;
+}
+
+.form-section__title {
+    margin: 10px 0;
+
+    text-align: center;
+    font-size: inherit;
+    color: coral;
+}
+
+.form-section__form {
+    margin: 40px 0;
+}
+
+.form-section .button-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    margin: 20px;
+}
