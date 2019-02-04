@@ -1,6 +1,7 @@
 .page-content {
     box-sizing: border-box;
     min-height: calc(100vh - 45px);
+    min-width: 900px;
 
     display: flex;
     flex-direction: column;
