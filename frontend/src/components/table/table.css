@@ -1,0 +1,42 @@
+.table {
+	width: 100%;
+
+	margin: 20px 0;
+	padding: 10px;
+
+	border-spacing: 0 5px;
+	text-align: left;
+	font-size: 16pt;
+}
+
+.table__header {
+	background: antiquewhite;
+}
+
+.table__header th {
+	padding: 10px;
+}
+
+.table__content td {
+	padding: 5px 10px;
+
+	border-bottom: 1px solid antiquewhite;
+
+	font-size: 0.9em;
+}
+
+.table__content td:last-child {
+	border-right: none;
+}
+
+.table__content tr:hover {
+	color: coral;
+}
+
+.table__link {
+	display: flex;
+
+	cursor: pointer;
+	color: inherit;
+	text-decoration: none;
+}

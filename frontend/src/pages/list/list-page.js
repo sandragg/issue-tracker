@@ -3,10 +3,10 @@ import React, {
     useState,
     useEffect
 } from 'react';
-import { Link } from 'react-router-dom';
 import { ROUTES } from 'services/routes';
 import { listsOptions } from 'services/list-options';
 import { Field } from 'api/models';
+import { Table } from 'components/table';
 import './list-page.css';
 
 export const ListPage = (props) => {
@@ -30,19 +30,12 @@ export const ListPage = (props) => {
 
     return list && list.length ? (
         <section className="section list-section">
-            <table className="list-section__table">
-                <thead className="table__header">
-                    {buildTableHeader(listFields.current)}
-                </thead>
-                <tbody className="table__content">
-                    {buildTableBody(
-                        list,
-                        params.type,
-                        listFields.current,
-                        listOpts.current
-                    )}
-                </tbody>
-            </table>
+            <Table
+                list={list}
+                listType={params.type}
+                fields={listFields.current}
+                idField={listOpts.current.idField}
+            />
         </section>
     ) : (
         <span className="notice">List is empty</span>
@@ -51,49 +44,4 @@ export const ListPage = (props) => {
 
 function filterVisibleFields(field) {
     return !field.hidden;
-}
-
-function buildTableHeader(fields) {
-    return (
-        <tr>
-            {fields.map(field =>
-                <th key={field.key}>
-                    {field.name}
-                </th>
-            )}
-        </tr>
-    )
-}
-
-function buildTableBody(list, listType, fields, opts) {
-    const { idField } = opts;
-    const EDIT_PATH = ROUTES.EDIT.replace(':type', listType);
-
-    return list.map(item => {
-        const idValue = item[idField];
-
-        return (
-            <tr key={idValue}>
-                {fields.map(field => {
-                    const fieldKey = field.key;
-                    const fieldValue = item[fieldKey];
-
-                    return (
-                        <td key={idValue + fieldKey}>
-                            {
-                                fieldKey === idField ? (
-                                    <Link
-                                        className="table__link"
-                                        to={EDIT_PATH.replace(':id', idValue)}
-                                    >
-                                        {fieldValue}
-                                    </Link>
-                                ) : fieldValue
-                            }
-                        </td>
-                    )
-                })}
-            </tr>
-        )
-    });
 }
