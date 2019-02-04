@@ -3,7 +3,9 @@ import './field.css';
 
 export const Field = props => {
 	const { id, name, type } = props;
-	const Component = inputs[type];
+	const Component = type === 'select'
+		? SelectInput
+		: Input;
 
 	return (
         <div className="field">
@@ -36,8 +38,3 @@ const SelectInput = ({ options, ...props }) => (
 		))}
     </select>
 );
-
-const inputs = {
-	'text': Input,
-	'select': SelectInput
-};
