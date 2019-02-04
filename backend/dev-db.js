@@ -64,7 +64,8 @@ function createFields() {
             type: 'text',
             autocomplete: false,
             mutable: false,
-            hidden: true
+            hidden: true,
+            private: true
         },
         {
             model: 'issue',
@@ -127,10 +128,55 @@ function createFields() {
             type: 'select',
             autocomplete: false,
             mutable: false,
-            hidden: true
+            hidden: false
         },
         {
             model: 'issue',
+            key: 'user_login',
+            name: 'User',
+            type: 'text',
+            autocomplete: true,
+            mutable: false,
+            hidden: false
+        },
+        {
+            model: 'issue',
+            key: 'comment',
+            name: 'Comment',
+            type: 'text',
+            autocomplete: false,
+            mutable: true,
+            hidden: true
+        },
+        {
+            model: 'history',
+            key: 'date',
+            name: 'Update date',
+            type: 'date',
+            autocomplete: true,
+            mutable: false,
+            hidden: false
+        },
+        {
+            model: 'history',
+            key: 'status',
+            name: 'Status',
+            type: 'select',
+            autocomplete: false,
+            mutable: false,
+            hidden: false
+        },
+        {
+            model: 'history',
+            key: 'comment',
+            name: 'Comment',
+            type: 'text',
+            autocomplete: false,
+            mutable: false,
+            hidden: false
+        },
+        {
+            model: 'history',
             key: 'user_login',
             name: 'User',
             type: 'text',

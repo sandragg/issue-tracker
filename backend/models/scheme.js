@@ -43,12 +43,12 @@ const scheme = sequelize => {
     const Criticality = sequelize.define('Criticality', infoTable, options);
 
     Issue.belongsTo(User, { foreignKey: 'user_login' });
-    Issue.belongsTo(Status, { foreignKey: 'status_id' });
-    Issue.belongsTo(Urgency, { foreignKey: 'urgency_id' });
-    Issue.belongsTo(Criticality, { foreignKey: 'criticality_id' });
+    Issue.belongsTo(Status, { foreignKey: 'status' });
+    Issue.belongsTo(Urgency, { foreignKey: 'urgency' });
+    Issue.belongsTo(Criticality, { foreignKey: 'criticality' });
 
-    IssueHistory.belongsTo(Issue, { foreignKey: 'issue_id' });
-    IssueHistory.belongsTo(Status, { foreignKey: 'status_id' });
+    IssueHistory.belongsTo(Issue, { foreignKey: 'issue' });
+    IssueHistory.belongsTo(Status, { foreignKey: 'status' });
     IssueHistory.belongsTo(User, { foreignKey: 'user_login' });
 
     const Field = sequelize.define('Field', {
@@ -58,7 +58,8 @@ const scheme = sequelize => {
         type: Sequelize.STRING,
         autocomplete: Sequelize.INTEGER(1),
         mutable: Sequelize.INTEGER(1),
-        hidden: Sequelize.INTEGER(1)
+        hidden: Sequelize.INTEGER(1),
+        private: Sequelize.INTEGER(1)
     }, options)
 };
 

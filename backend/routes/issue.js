@@ -5,9 +5,8 @@ const {
     IssueHistory
 } = require('../models').models;
 
-// TODO need fixes in post/put methods
 issueRouter.post('/', (req, res) => {
-    const { issueData } = req.body;
+    const issueData = req.body;
     let newIssue;
 
     if (!issueData) {
@@ -17,15 +16,15 @@ issueRouter.post('/', (req, res) => {
     Issue.create(issueData)
         .then(issue => {
             newIssue = issue;
-            return IssueHistory.create({ date: newIssue.date })
+            issue.setUser(issueData.user);
+            issue.setStatus(issueData.status);
+            issue.setUrgency(issueData.urgency);
+            issue.setCriticality(issueData.criticality);
+
+            return createHistoryRecord(issue, 'New issue');
         })
-        .then(issueHist => {
-            issueHist.setUser(newIssue.userLogin);
-            issueHist.setIssue(newIssue.id);
-            issueHist.setStatus(newIssue.statusId);
-            res.send({ id: newIssue.id });
-        })
-        .catch(err => res.status(500).send(err))
+        .then(() => res.send({ id: newIssue.id }))
+        .catch(err => res.status(500).send(err));
 });
 
 issueRouter.get('/', (req, res) => {
@@ -39,7 +38,7 @@ issueRouter.get('/:id', (req, res) => {
     const issuePromise = Issue.findByPk(id);
     const issueHistPromise = IssueHistory.findAll({
         where: {
-            issueId: id
+            issue: id
         }
     });
 
@@ -47,31 +46,45 @@ issueRouter.get('/:id', (req, res) => {
         issuePromise,
         issueHistPromise
     ])
-        .then(data => res.send(data))
+        .then(data =>
+            data[0]
+                ? res.send(data)
+                : res.status(422).send('Issue doesn\'t exist')
+        )
         .catch(err => res.status(500).send(err));
 });
 
 issueRouter.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { issueData, comment } = req.body;
+    const { data, comment } = req.body;
 
-    if (!issueData) {
+    if (!data) {
         return res.sendStatus(400);
     }
 
     Issue.findByPk(id)
-        .then(issue => {
-            if (!issue) {
-                return res.send('Issue doesn\'t exist');
-            }
-            Promise.all([
-                issue.update(issueData),
-                // IssueHistory.create()
-            ]).then(data =>
-                res.send({ id: data[0].id }
-            ));
-        })
+        .then(issue =>
+            !issue
+                ? res.status(422).send('Issue doesn\'t exist')
+                : Promise.all([
+                    issue.update(data),
+                    createHistoryRecord(issue, comment)
+                ])
+                    .then(() => res.send({ id }))
+        )
         .catch(err => res.status(500).send(err));
 });
+
+function createHistoryRecord(issue, comment) {
+    return IssueHistory.create({
+        date: issue.date,
+        comment
+    })
+        .then(issueHist => {
+            issueHist.setUser(issue.user_login);
+            issueHist.setIssue(issue.id);
+            issueHist.setStatus(issue.status);
+        })
+}
 
 module.exports = issueRouter;
