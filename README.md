@@ -6,7 +6,7 @@ The interface consists of 3 windows:
 - **List** of all issues/users recorded in the system (main fields). To open/edit certain list item just click on an id field in the table.
 - **Editor** to create the new item or edit existed. In addition, opening of the existed issue shows its history changes in the table. In issue only status can be changed!
 
-You can find a short [video](https://github.com/sandragg/issue-tracker/blob/master/issue-tracker.mov) in a root folder.
+![Gif](https://media.giphy.com/media/StKGzbSwSUBWhSG0RU/giphy.gif)
 
 ## Dependencies
 `node` and `npm`
